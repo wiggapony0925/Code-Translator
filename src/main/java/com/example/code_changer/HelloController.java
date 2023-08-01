@@ -1,22 +1,18 @@
 package com.example.code_changer;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
-import javafx.stage.FileChooser;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
+import javafx.scene.control.Label;
 import org.fxmisc.richtext.CodeArea;
+import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.net.URL;
+import java.nio.file.Files;
 import java.util.ResourceBundle;
 
 public class HelloController implements Initializable {
@@ -30,12 +26,6 @@ public class HelloController implements Initializable {
     private CodeArea outputTextArea;
 
     @FXML
-    private Button importButton;
-
-    @FXML
-    private Button translateButton;
-
-    @FXML
     private ComboBox<String> inputLanguageComboBox;
 
     @FXML
@@ -44,23 +34,10 @@ public class HelloController implements Initializable {
     @FXML
     private TextField apiKeyField;
 
-    @Override  //handles the Dropdown box for the languages
-    public void initialize(URL url, ResourceBundle rb) {
-        inputLanguageComboBox.getItems().addAll("Java", "Python", "Javascript","C++", "C", "Ruby");
-        outputLanguageComboBox.getItems().addAll("Java", "Python", "Javascript","C++", "C", "Ruby");
-
-        inputLanguageComboBox.setValue("None");
-        outputLanguageComboBox.setValue("Choose");
-
-        // Now use the TextFields.bindAutoCompletion method to make the ComboBoxes searchable
-        AutoCompletionBinding<String> autoCompletionBindingInput = TextFields.bindAutoCompletion(inputLanguageComboBox.getEditor(), inputLanguageComboBox.getItems());
-        AutoCompletionBinding<String> autoCompletionBindingOutput = TextFields.bindAutoCompletion(outputLanguageComboBox.getEditor(), outputLanguageComboBox.getItems());
-    }
-
-    @FXML //handles the file input
-    private void importFile(MouseEvent event) {
+    @FXML
+    private void importFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Text Files", "*.txt", "*.java", "*.py", "*.js", "*.c", "*.cpp", "*.rb"));
+        fileChooser.getExtensionFilters().add(new ExtensionFilter("Text Files", "*.txt", "*.java", "*.py", "*.js", "*.c", "*.cpp", "*.rb"));
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
@@ -92,6 +69,15 @@ public class HelloController implements Initializable {
         String translatedCode = ""; // Replace this with the response from your API
 
         outputTextArea.replaceText(translatedCode);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        inputLanguageComboBox.getItems().addAll("Java", "Python", "Javascript", "C++", "C", "Ruby");
+        outputLanguageComboBox.getItems().addAll("Java", "Python", "Javascript", "C++", "C", "Ruby");
+
+        inputLanguageComboBox.setValue("None");
+        outputLanguageComboBox.setValue("Choose");
     }
 
     @FXML
