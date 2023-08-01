@@ -3,8 +3,11 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import org.fxmisc.richtext.CodeArea?>
+<?import javafx.scene.layout.HBox?>
+
 <VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
       fx:controller="com.example.code_changer.HelloController">
   <padding>
@@ -13,4 +16,21 @@
 
   <Label fx:id="welcomeText"/>
   <Button text="Hello!" onAction="#onHelloButtonClick"/>
+
+  <HBox spacing="10">
+    <ComboBox fx:id="inputLanguageComboBox" promptText="Choose Input Language"/>
+    <ComboBox fx:id="outputLanguageComboBox" promptText="Choose Output Language"/>
+  </HBox>
+
+  <HBox spacing="10">
+    <CodeArea fx:id="inputTextArea"  prefWidth="300"/>
+    <CodeArea fx:id="outputTextArea"  prefWidth="300"/>
+  </HBox>
+
+  <HBox spacing="10">
+    <Button fx:id="importButton" text="Import File" onAction="#importFile"/>
+    <Button fx:id="translateButton" text="Translate" onAction="#translateCode"/>
+  </HBox>
+
 </VBox>
+
