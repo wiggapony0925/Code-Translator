@@ -19,6 +19,8 @@ public class HelloController implements Initializable {
     private Label welcomeText;
 
     @FXML
+    private Label OpenaiText;
+    @FXML
     private ComboBox<String> inputLanguageComboBox;
 
     @FXML
