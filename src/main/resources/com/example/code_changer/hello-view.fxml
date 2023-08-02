@@ -26,7 +26,7 @@
         <ComboBox fx:id="inputLanguageComboBox" prefHeight="25.0" prefWidth="650.0" promptText="Choose Input Language" />
         <ComboBox fx:id="outputLanguageComboBox" prefHeight="25.0" prefWidth="650.0" promptText="Choose Output Language" />
     </HBox>
-
+    <Button fx:id="downloadButton" onAction="#downloadOutputFile" text="Download Translated Code" />
     <HBox spacing="10">
         <!-- Replace CodeArea with the desired text processing control (e.g., TextArea) -->
         <TextArea fx:id="inputTextArea" prefHeight="544.0" prefWidth="629.0"/>
