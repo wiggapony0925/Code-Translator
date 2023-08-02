@@ -15,9 +15,11 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.ResourceBundle;
 
+import java.util.Objects;
+
+
 public class HelloController implements Initializable {
-    @FXML
-    private Label welcomeText;
+
 
     @FXML
     private Label OpenaiText;
@@ -64,21 +66,10 @@ public class HelloController implements Initializable {
             return;
         }
 
-        // Make your request to the Web API with 'inputCode', 'inputLanguage', 'outputLanguage', and 'apiKey' here
-        // For example, if you have a method that makes the API call and returns the translated code as a String:
-        String translatedCode = makeAPICall(inputCode, inputLanguage, outputLanguage, apiKey);
+        OpenAiClient openAiClient = new OpenAiClient(apiKey);
+        String translatedCode = openAiClient.translateCode(inputCode, inputLanguage, outputLanguage);
 
-        // Replace the CodeArea code with your desired text processing here
-        // For example, you can use a simple TextArea or any other control
-        outputTextArea.setText(translatedCode);
-    }
-
-    // This is just a placeholder method, you should implement your own API call logic
-    private String makeAPICall(String inputCode, String inputLanguage, String outputLanguage, String apiKey) {
-        // Implement your API call here using the provided 'inputCode', 'inputLanguage', 'outputLanguage', and 'apiKey'
-        // Send the request to the API endpoint and parse the response to a String
-        // For the sake of this example, let's assume we are returning a sample translated code
-        return "Translated code: " + inputCode + " to " + outputLanguage;
+        outputTextArea.setText(Objects.requireNonNullElse(translatedCode, "Translation failed. Please try again"));
     }
 
     @Override
@@ -90,8 +81,4 @@ public class HelloController implements Initializable {
         outputLanguageComboBox.setValue("Choose");
     }
 
-    @FXML
-    protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
-    }
 }
