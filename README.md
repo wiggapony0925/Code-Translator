@@ -15,7 +15,7 @@ To use the Code Changer application, you will need an OpenAI API key. If you don
 
 1. Clone the repository:
 
-git clone https://github.com/eiggapony0925/Code_Changer.git
+git clone https://github.com/wiggapony0925/Code_Changer.git
 
 
 2. Open the project in your favorite Java IDE.
