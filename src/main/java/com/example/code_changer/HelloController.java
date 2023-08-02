@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -28,6 +29,9 @@ public class HelloController implements Initializable {
 
     @FXML
     private TextField apiKeyField;
+
+    @FXML
+    private TextArea outputTextArea; // Add this declaration
 
     @FXML
     private void importFile() {
@@ -61,12 +65,20 @@ public class HelloController implements Initializable {
         }
 
         // Make your request to the Web API with 'inputCode', 'inputLanguage', 'outputLanguage', and 'apiKey' here
-        // Parse the response to a String
-        String translatedCode = ""; // Replace this with the response from your API
+        // For example, if you have a method that makes the API call and returns the translated code as a String:
+        String translatedCode = makeAPICall(inputCode, inputLanguage, outputLanguage, apiKey);
 
         // Replace the CodeArea code with your desired text processing here
         // For example, you can use a simple TextArea or any other control
-        // outputTextArea.replaceText(translatedCode);
+        outputTextArea.setText(translatedCode);
+    }
+
+    // This is just a placeholder method, you should implement your own API call logic
+    private String makeAPICall(String inputCode, String inputLanguage, String outputLanguage, String apiKey) {
+        // Implement your API call here using the provided 'inputCode', 'inputLanguage', 'outputLanguage', and 'apiKey'
+        // Send the request to the API endpoint and parse the response to a String
+        // For the sake of this example, let's assume we are returning a sample translated code
+        return "Translated code: " + inputCode + " to " + outputLanguage;
     }
 
     @Override
