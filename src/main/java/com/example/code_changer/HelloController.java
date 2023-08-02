@@ -4,7 +4,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import org.fxmisc.richtext.CodeArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -18,12 +17,6 @@ import java.util.ResourceBundle;
 public class HelloController implements Initializable {
     @FXML
     private Label welcomeText;
-
-    @FXML
-    private CodeArea inputTextArea;
-
-    @FXML
-    private CodeArea outputTextArea;
 
     @FXML
     private ComboBox<String> inputLanguageComboBox;
@@ -47,13 +40,14 @@ public class HelloController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            inputTextArea.replaceText(content);
+            // Replace the CodeArea code with your desired text processing here
+            // For example, you can use a simple TextArea or any other control
         }
     }
 
     @FXML
     private void translateCode() {
-        String inputCode = inputTextArea.getText();
+        String inputCode = ""; // Replace this with your desired input text
         String inputLanguage = inputLanguageComboBox.getValue();
         String outputLanguage = outputLanguageComboBox.getValue();
         String apiKey = apiKeyField.getText(); // Access API key from the TextField
@@ -68,7 +62,9 @@ public class HelloController implements Initializable {
         // Parse the response to a String
         String translatedCode = ""; // Replace this with the response from your API
 
-        outputTextArea.replaceText(translatedCode);
+        // Replace the CodeArea code with your desired text processing here
+        // For example, you can use a simple TextArea or any other control
+        // outputTextArea.replaceText(translatedCode);
     }
 
     @Override
