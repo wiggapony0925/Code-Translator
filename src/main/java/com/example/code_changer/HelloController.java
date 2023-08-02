@@ -36,22 +36,38 @@ public class HelloController implements Initializable {
     private TextArea outputTextArea; // Add this declaration
 
     @FXML
+    private TextArea inputTextArea;
+
+    @FXML
     private void importFile() {
         FileChooser fileChooser = new FileChooser();
-        fileChooser.getExtensionFilters().add(new ExtensionFilter("Text Files", "*.txt", "*.java", "*.py", "*.js", "*.c", "*.cpp", "*.rb"));
+
+        // Create a custom file filter that allows only specific extensions
+        ExtensionFilter customFilter = new ExtensionFilter("Code Files (*.txt, *.java, *.py, *.js, *.c, *.cpp, *.rb)", "*.txt", "*.java", "*.py", "*.js", "*.c", "*.cpp", "*.rb");
+        fileChooser.getExtensionFilters().add(customFilter);
+
         File selectedFile = fileChooser.showOpenDialog(null);
 
         if (selectedFile != null) {
-            String content = "";
-            try {
-                content = new String(Files.readAllBytes(selectedFile.toPath()));
-            } catch (IOException e) {
-                e.printStackTrace();
+            String fileName = selectedFile.getName();
+            if (fileName.matches(".*\\.(txt|java|py|js|c|cpp|rb)")) {
+                // Read the content of the selected file
+                String content = "";
+                try {
+                    content = new String(Files.readAllBytes(selectedFile.toPath()));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                // Set the content of the selected file in the inputTextArea
+                inputTextArea.setText(content);
+            } else {
+                // Show an error message or handle the situation when the selected file's extension is not allowed
+                System.out.println("Selected file does not have a valid extension.");
             }
-            // Replace the CodeArea code with your desired text processing here
-            // For example, you can use a simple TextArea or any other control
         }
     }
+
 
     @FXML
     private void translateCode() {

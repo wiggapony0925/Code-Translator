@@ -29,7 +29,7 @@
 
     <HBox spacing="10">
         <!-- Replace CodeArea with the desired text processing control (e.g., TextArea) -->
-        <TextArea fx:id="inputTextArea" prefHeight="544.0" prefWidth="629.0" text="i" />
+        <TextArea fx:id="inputTextArea" prefHeight="544.0" prefWidth="629.0"/>
         <TextArea fx:id="outputTextArea" prefHeight="544.0" prefWidth="629.0" />
     </HBox>
 
